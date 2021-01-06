@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윈플러스</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = $('.m_menu');
+                $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = $('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function(event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function(event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function() {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function(event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                $(window).resize(function() {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+
+    </script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="wrap">
+        <!-- 여기부터 상단 -->
+        <header id="header">
+            <div class="top_header">
+                <div class="inner">
+                    <ul class="site">
+                        <li>입점문의</li>
+                        <li>납품문의</li>
+                        <li>
+                            <select>
+                                <option>입지제안</option>
+                                <option></option>
+                            </select>
+                        </li>
+                        <!-- :after으로 clear:both -->
+                    </ul>
+                    <ul class="util">
+                        <li>로그인</li>
+                        <li>회사소개</li>
+                        <li>채용정보</li>
+                        <li>ENGLISH</li>
+                        <!-- :after으로 clear:both -->
+                    </ul>
+                    <!-- :after으로 clear:both -->
+                </div>
+            </div>
+            <div class="bottom_header">
+                <div class="inner">
+                    <ul class="menu">
+                        <li><a href="sub1.html">사업영역</a>
+                            <ul class="submenu submenu_m">
+                                <li><a href="sub1.html">식자재 유통사업</a></li>
+                                <li><a href="sub1.html">PB사업</a></li>
+                                <li><a href="sub1.html">매장안내</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="sub1.html">매장안내</a>
+                            <ul class="submenu submenu_m">
+                                <li><a href="sub1.html">브랜드매장</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="sub2.html">상품소개</a>
+                            <ul class="submenu submenu_m">
+                                <li><a href="sub2.html">신상품</a></li>
+                                <li><a href="sub2.html">인기상품</a></li>
+                                <li><a href="sub2.html">전체상품</a></li>
+                                <li><a href="sub2.html">카탈로그</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="sub1.html">고객안내</a>
+                            <ul class="submenu submenu_m">
+                                <li><a href="sub1.html">공지사항</a></li>
+                                <li><a href="sub1.html">입접문의</a></li>
+                                <li><a href="sub1.html">납품문의</a></li>
+                                <li><a href="sub1.html">입지제안</a></li>
+                            </ul>
+                        </li>
+                        <!-- :after으로 clear:both -->
+                    </ul>
+                    <div class="logo">
+                        <a href="index.html"><img src="img/logo.png" alt="로고"></a>
+                    </div>
+                    <div class="sub_menu">
+                        <ul class="side">
+                            <li><i><img src="img/product.png" alt="전체상품"></i>전체상품</li>
+                            <li><i><img src="img/calatalog.png" alt="카탈로그"></i>카탈로그</li>
+                        </ul>
+                        <div class="search">
+                            <img src="img/search.png" alt="검색">
+                        </div>
+                        <div class="m_menu"><a href="#"><img src="img/menu.png" alt="메뉴버튼"></a></div>
+                        <nav class="left_gnbWrap">
+                            <a href="#" class="close"><img src="img/btn_fixClose.png" alt="close"></a>
+                            <ul class="left_gnb">
+                                <li>
+                                    <a href="sub1.html">사업영역</a>
+                                    <ul>
+                                        <li><a href="sub1.html">식자재 유통사업</a></li>
+                                        <li><a href="sub1.html">PB사업</a></li>
+                                        <li><a href="sub1.html">매장안내</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="sub1.html">매장안내</a>
+                                    <ul>
+                                        <li><a href="sub1.html">브랜드매장</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="sub2.html">상품소개</a>
+                                    <ul>
+                                        <li><a href="sub2.html">신상품</a></li>
+                                        <li><a href="sub2.html">인기상품</a></li>
+                                        <li><a href="sub2.html">전체상품</a></li>
+                                        <li><a href="sub2.html">카탈로그</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="sub1.html">고객안내</a>
+                                    <ul>
+                                        <li><a href="sub1.html">공지사항</a></li>
+                                        <li><a href="sub1.html">입접문의</a></li>
+                                        <li><a href="sub1.html">납품문의</a></li>
+                                        <li><a href="sub1.html">입지제안</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- :after으로 clear:both -->
+                    </div>
+                    <!-- :after으로 clear:both -->
+                </div>
+            </div>
+        </header>
+        <!-- 여기까지 상단 -->
+
+
+        <!-- 여기부터 서브1 콘텐츠 -->
+        <main id="sub1-contents">
+            <section class="subtitle">
+                <div class="inner">
+                    <ul>
+                        <li><img src="img/home.png" alt="홈"></li>
+                        <li>
+                            <select>
+                                <option>&nbsp;&nbsp;사업영역</option>
+                                <option>&nbsp;&nbsp;회사소개</option>
+                                <option>&nbsp;&nbsp;사업영역</option>
+                                <option>&nbsp;&nbsp;매장안내</option>
+                                <option>&nbsp;&nbsp;상품소개</option>
+                                <option>&nbsp;&nbsp;채용정보</option>
+                                <option>&nbsp;&nbsp;고객안내</option>
+                                <option>&nbsp;&nbsp;MALL</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select>
+                                <option>&nbsp;&nbsp;식자재유통사업</option>
+                                <option>&nbsp;&nbsp;PB사업</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="titlebodyimage">
+                <h1 class="hidden">서브이미지</h1>
+            </section>
+            <section class="expert">
+                <h1 class="hidden">식자재 유통 전문가</h1>
+                <div class="expert_text">
+                    <h2>대한민국 <span>No.1 식자재 유통 전문가</span></h2>
+                    <p>(주)윈플러스만의 식자재 도매유통 인프라는 <span>새로운 식자재 유통환경 조성을 선도</span>해나가고 있습니다.</p>
+                </div>
+                <div class="expert_img">
+                    <dl>
+                        <dt><i><img src="img/sub_ico01.png" alt="다양한 식자재"></i>다양한 식자재</dt>
+                        <dd>
+                            <ul>
+                                <li>가성비, 가심비 PB 브랜드 “식자재왕”을 </li>
+                                <li>포함한 2천여개의 다양한 식자재 상품 운영</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><i><img src="img/sub_ico02.png" alt="전문상품"></i>전문상품</dt>
+                        <dd>
+                            <ul>
+                                <li>식자재 전문 상품 개발 인력 및 시설 보유</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><i><img src="img/sub_ico03.png" alt="안전성 확보"></i>안전성 확보</dt>
+                        <dd>
+                            <ul>
+                                <li>전문 QC인력 협력사 정기 위생점검으로</li>
+                                <li>상품의 안전성 확보</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><i><img src="img/sub_ico04.png" alt="물류"></i>물류</dt>
+                        <dd>
+                            <ul>
+                                <li>농협, 수협, 다농 외 전국 300여 거래처 </li>
+                                <li>배송 인프라 냉동, 냉장 콜드체인 구축</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><i><img src="img/sub_ico05.png" alt="주문"></i>주문</dt>
+                        <dd>
+                            <ul>
+                                <li>온라인 발주 시스템</li>
+                                <li>앱을 통해 내가 좋아하는 APP 검색</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <!-- :after으로 clear:both -->
+                </div>
+            </section>
+            <section class="expert_xtra">
+                <h1 class="hidden">상품 요금 안내</h1>
+                <!--h3>상품 요금 안내</h3-->
+                <div class="expert_xtraImg">
+                    <div class="spce_l">
+                        <i class="expert_icon"><img src="img/sub_ico06.png" alt="스마트HD 골드"></i>
+                        <p class="txt1">사업 초기 부터 안정화까지</p>
+                        <p class="view">고객사별 전담 매니저 운영</p>
+                        <p class="txt2">매월 핵심 식자재상품 행사지원(가치소비제안)</p>
+                        <p class="btnExp">납품문의하기</p>
+                    </div>
+                    <div class="spce_r">
+                        <i class="expert_icon"><img src="img/sub_ico07.png" alt="스마트HD 실버"></i>
+                        <p class="txt1">전산 및 시설 자문</p>
+                        <p class="view">최적의 진열 제안, 리뉴얼서비스</p>
+                        <p class="txt2">식자재왕 도매마트 브랜드 매장 견학지원</p>
+                        <p class="btnExp">납품문의하기</p>
+                    </div>
+                    <!-- :after으로 clear:both -->
+                </div>
+                <ul class="upgrade">
+                    <li>식자재 전문가의 맞춤형 컨설팅으로 <span>식자재마트 운영의 수준을 업그레이드</span>해드립니다.</li>
+                </ul>
+            </section>
+            <section class="sub_bottom">
+                <div class="inner">
+                    <ul>
+                        <li>신제품</li>
+                        <li>인기상품</li>
+                        <li>전체상품</li>
+                        <li>카탈로그</li>
+                    </ul>
+                    <div>
+                        <select>
+                            <option>온라인쇼핑</option>
+                            <option>11번가</option>
+                            <option>쿠팡</option>
+                            <option>마켓컬리</option>
+                            <option>네이버스토어팜</option>
+                            <option>신세계몰</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- 여기까지 서브1 콘텐츠 -->
+
+        <!-- 여기부터 하단 -->
+        <footer id="footer">
+            <div class="top_footer">
+                <div class="inner">
+                    <ul>
+                        <li>개인정보처리방침</li>
+                        <li>오시는길</li>
+                        <li>입점문의</li>
+                        <li>납품문의</li>
+                        <li>입지제안</li>
+                        <!-- :after으로 clear:both -->
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom_footer">
+                <div class="inner">
+                    <div class="f_logo">
+                        <img src="img/f_logo.png" alt="하단로고">
+                    </div>
+                    <div class="copyright">
+                        <ul>
+                            <li><span>주소</span>경기도 포천시 소흘읍 부흥로 280-2</li>
+                            <li><span>대표자</span>권인태, 유주열</li>
+                            <li><span>대표번호</span>1811-9696</li>
+                            <li><span>서울사무소</span>서울특별시 성동구 뚝섬로 1길 63, 영창디지털타워 14층</li>
+                        </ul>
+                        <p>ⓒ2019 by WIN-PLUS. All Rights Reserved.</p>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            <li><span>대표번호</span>1811-9696</li>
+                            <li><span>팩스</span>02-6919-2512</li>
+                            <!-- :after으로 clear:both -->
+                        </ul>
+                    </div>
+                    <!-- :after으로 clear:both -->
+                </div>
+            </div>
+        </footer>
+        <!-- 여기까지 하단 -->
+    </div>
+</body>
+
+</html>
