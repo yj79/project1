@@ -374,7 +374,9 @@ a.close {
 }
 */
 
-.dot-navigation .slick-track{transform: translate3d(0px, 0px, 0px) ! important}
+.dot-navigation .slick-track {
+    transform: translate3d(0px, 0px, 0px) ! important
+}
 
 /* 콘텐츠 */
 /* brand */
@@ -1183,13 +1185,13 @@ a.close {
 }
 
 .expert_xtraImg {
-    width: 99.5%;
+    width: 99.999999%;
     margin: 0 auto
 }
 
 .spce_l,
 .spce_r {
-    width: 48.14%;
+    width: calc(99.999999% / 2 - 17px);
     height: 455px;
     float: left;
     border: 1px solid #e2e2e2;
@@ -1197,11 +1199,11 @@ a.close {
 }
 
 .spce_l {
-    margin-right: 1.7%
+    margin-right: 15px
 }
 
 .spce_r {
-    margin-left: 1.7%
+    margin-left: 15px
 }
 
 .expert_icon {
@@ -1882,7 +1884,7 @@ a.close {
     .bottom_header {
         border-bottom: none
     }
-    
+
     .submenu_m {
         top: 72px
     }
@@ -1931,24 +1933,25 @@ a.close {
     }
 
     .expert_xtra {
-        width: 100%
+        width: 98%;
     }
 
     .expert_xtraImg {
-        width: 98%
+        width: 99.999999%;
+        margin: 0 auto
     }
 
     .spce_l {
-        margin-right: 0
+        margin-right: 5px
     }
 
     .spce_r {
-        margin-left: 0
+        margin-left: 5px
     }
 
     .spce_l,
     .spce_r {
-        width: 49.5%
+        width: calc(99.999999% / 2 - 7px)
     }
 
     .upgrade {
@@ -2021,103 +2024,189 @@ a.close {
     /* 서브2끝 */
 
 }
+
 @media(max-width:1000px) {
     .new_set {
         padding-bottom: calc(300/1920*100%)
     }
 
 
-@media (max-width:768px) {
+    @media (max-width:768px) {
 
-    .menu {
-        display: none
-    }
-    
-    .new_set {
-        padding-bottom: calc(800/1920*100%)
-    }
+        .menu {
+            display: none
+        }
 
-    .new_set > .newslider > .new_list > .slide > p {
-        display: none
-    }
-    
-    .brandstore{background-position: center right}
+        .new_set {
+            padding-bottom: calc(800/1920*100%)
+        }
 
-    .brandtitle > h2 {
-        width: 35%;
-        left: 0;
-        right: 0
-    }
+        .new_set > .newslider > .new_list > .slide > p {
+            display: none
+        }
 
-    .banner_set > .inner > ul {
-        width: 98%;
-        left: 0;
-        right: 0;
-    }
+        .brandstore {
+            background-position: center right
+        }
 
-    .board_set {
-        line-height: revert;
-        height: 100px;
-    }
+        .brandtitle > h2 {
+            width: 35%;
+            left: 0;
+            right: 0
+        }
 
-    .board_set > h2 {
-        float: none
-    }
+        .banner_set > .inner > ul {
+            width: 98%;
+            left: 0;
+            right: 0;
+        }
 
-    .board_set > p {
-        float: none;
-        line-height: 40px;
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        .board_set {
+            line-height: revert;
+            height: 100px;
+        }
 
-    }
+        .board_set > h2 {
+            float: none
+        }
 
+        .board_set > p {
+            float: none;
+            line-height: 40px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
 
-    .board_set > ul {
-        float: none
-    }
-
-    #footer {
-        height: 200px
-    }
-
-    .top_footer {
-        display: none
-    }
-
-    .bottom_footer {
-        padding-top: 50px
-    }
-
-    .top_footer > .inner > ul {
-        display: none
-    }
-
-    .bottom_footer > .inner > .f_logo,
-    .copyright {
-        position: revert
-    }
-
-    .bottom_footer > .inner > .info {
-        display: none
-    }
+        }
 
 
-    .new_introduce > .inner > div:nth-child(2) {
-        height: 1000px
-    }
+        .board_set > ul {
+            float: none
+        }
 
-}
+        #footer {
+            height: 200px
+        }
 
-@media (max-width:570px) {
+        .top_footer {
+            display: none
+        }
 
-    .banner_set > .inner > ul > li img {
-        width: 90%
+        .bottom_footer {
+            padding-top: 50px
+        }
+
+        .top_footer > .inner > ul {
+            display: none
+        }
+
+        .bottom_footer > .inner > .f_logo,
+        .copyright {
+            position: revert
+        }
+
+        .bottom_footer > .inner > .info {
+            display: none
+        }
+
+
+        .new_introduce > .inner > div:nth-child(2) {
+            height: 1000px
+        }
+
     }
 
-    .new_introduce > .inner > div:nth-child(2) {
-        height: 940px
+    @media (max-width:768px) {
+        .brand {
+            width: 98%
+        }
+
+        .new_set {
+            padding-top: calc(1200/1920*100%);
+            padding-bottom: calc(1300/1920*100%)
+        }
+
+        .banner_set > .inner ul li p {
+            display: none
+        }
+
+        .brandstore > div {
+            width: 50%;
+            margin: 0 auto
+        }
+
+        /*서브1*/
+        .expert_img > dl > dd > ul {
+            padding-left: 25%
+        }
+
+        .spce_l {
+            margin-right: 0;
+            margin-bottom: 20px
+        }
+
+        .spce_r {
+            margin-left: 0
+        }
+
+        .spce_l,
+        .spce_r {
+            width: 100%
+        }
+
+
     }
-}
+
+    @media (max-width:570px) {
+
+        .banner_set > .inner > ul > li img {
+            width: 90%
+        }
+
+        .new_introduce > .inner > div:nth-child(2) {
+            height: 940px
+        }
+
+        .banner_set > .inner > div > p {
+            font-size: 2rem
+        }
+
+        .brandstore {
+            height: 200px
+        }
+
+        .brandstore p {
+            font-size: 2rem
+        }
+
+        .brandstore > div {
+            padding: 0 0 0 10%
+        }
+
+        /*서브1*/
+        .expert_img > dl > dd > ul {
+            padding-left: 15%
+        }
+
+    }
+
+    @media (max-width:367px) {
+        .product > ul > li {
+            width: 100%
+        }
+
+        /*서브1*/
+        .expert_img > dl > dd > ul {
+            padding-left: 0
+        }
+        .expert_text > h2{font-size: 2.2rem}
+        .expert_text > p{font-size: 1.5rem}
+        .expert_img > dl > dt{font-size: 2.2rem; padding: 30px 0 10px}
+        .txt1{font-size: 2rem}
+        .txt2{font-size: 1.3rem}
+        
+        /*서브2*/
+        .category_text > h2{font-size: 2.2rem}
+        .category_text > p{font-size: 1.5rem}
+    }
