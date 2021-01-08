@@ -2183,6 +2183,7 @@ a.close {
         .brandstore > div {
             padding: 0 0 0 10%
         }
+        .board_set{width: 95%; margin: 0 auto}
 
         /*서브1*/
         .expert_img > dl > dd > ul {
